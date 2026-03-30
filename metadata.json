@@ -1,0 +1,5 @@
+{
+  "name": "Company Timesheet Management",
+  "description": "A system for workers to input their daily time and admins to manage and download monthly reports.",
+  "requestFramePermissions": []
+}

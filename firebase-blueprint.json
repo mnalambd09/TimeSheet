@@ -1,0 +1,43 @@
+{
+  "entities": {
+    "User": {
+      "title": "User Profile",
+      "description": "Stores user profile information and roles.",
+      "type": "object",
+      "properties": {
+        "uid": { "type": "string", "description": "The unique ID of the user." },
+        "email": { "type": "string", "format": "email", "description": "The user's email address." },
+        "displayName": { "type": "string", "description": "The user's display name." },
+        "role": { "type": "string", "enum": ["worker", "admin"], "description": "The user's role in the system." },
+        "createdAt": { "type": "string", "format": "date-time", "description": "When the user profile was created." }
+      },
+      "required": ["uid", "email", "role"]
+    },
+    "TimesheetEntry": {
+      "title": "Timesheet Entry",
+      "description": "A daily time entry for a worker.",
+      "type": "object",
+      "properties": {
+        "workerId": { "type": "string", "description": "The UID of the worker." },
+        "workerName": { "type": "string", "description": "The name of the worker." },
+        "date": { "type": "string", "format": "date", "description": "The date of the entry (YYYY-MM-DD)." },
+        "startTime": { "type": "string", "description": "The start time (HH:mm)." },
+        "endTime": { "type": "string", "description": "The end time (HH:mm)." },
+        "totalHours": { "type": "number", "description": "The total hours worked." },
+        "notes": { "type": "string", "description": "Optional notes for the entry." },
+        "createdAt": { "type": "string", "format": "date-time", "description": "When the entry was created." }
+      },
+      "required": ["workerId", "date", "startTime", "endTime", "totalHours"]
+    }
+  },
+  "firestore": {
+    "/users/{userId}": {
+      "schema": "User",
+      "description": "User profile collection."
+    },
+    "/timesheets/{entryId}": {
+      "schema": "TimesheetEntry",
+      "description": "Collection of all timesheet entries."
+    }
+  }
+}
